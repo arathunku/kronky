@@ -166,7 +166,7 @@ defmodule Kronky.TestHelperTest do
     evaluate_schema schema: ValidSchema
 
     test "creates function" do
-      assert {:evaluate_graphql, 1} in __MODULE__.__info__(:exports)
+      assert {:evaluate_graphql, 1} in __MODULE__.__info__(:functions)
     end
 
   end
