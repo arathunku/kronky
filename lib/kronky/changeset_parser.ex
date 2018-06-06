@@ -84,9 +84,18 @@ defmodule Kronky.ChangesetParser do
     }
   end
 
-  defp tidy_opts(opts) do
-    Keyword.drop(opts, [:validation, :max, :is, :min, :code])
+  @tidy_opts_keys [:validation, :max, :is, :min, :code]
+
+  defp tidy_opts(opts) when is_list(opts) do
+    Keyword.drop(opts, @tidy_opts_keys)
   end
+
+  defp tidy_opts(opts) when is_map(opts) do
+    opts
+    |> Map.to_list()
+    |> tidy_opts()
+  end
+
 
   @doc """
   Inserts message variables into message.
